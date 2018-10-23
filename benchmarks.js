@@ -1,32 +1,31 @@
-var Benchmark = require('benchmark');
+const Benchmark = require('benchmark');
+const loop = require('./loop');
+const ongoing = require('./ongoing');
+const recursive = require('./recursive');
+const recursiveMemo = require('./recursiveMemo');
 
-var loop = require('./loop');
-var ongoing = require('./ongoing');
-var recursive = require('./recursive');
-var recursiveMemo = require('./recursiveMemo');
+const suite = new Benchmark.Suite;
 
-var suite = new Benchmark.Suite;
-
-var i = 20;
+const i = 20;
 
 suite
-.add('loop', () => {
-  loop(i);
-})
-.add('while', () => {
-  ongoing(i);
-})
-.add('recursive', () => {
-  recursive(i);
-})
-.add('recursiveMemo', () => {
-  recursiveMemo(i);
-})
-.on('cycle', e => {
-  console.log(String(e.target));
-})
-.on('complete', function() {
-  console.log('Fastest is ' + this.filter('fastest').map('name'));
-})
-.run({'async': true });
+  .add('loop', () => {
+    loop(i);
+  })
+  .add('while', () => {
+    ongoing(i);
+  })
+  .add('recursive', () => {
+    recursive(i);
+  })
+  .add('recursiveMemo', () => {
+    recursiveMemo(i);
+  })
+  .on('cycle', e => {
+    console.log(String(e.target));
+  })
+  .on('complete', function() {
+    console.log('Fastest is ' + this.filter('fastest').map('name'));
+  })
+  .run({'async': true });
 

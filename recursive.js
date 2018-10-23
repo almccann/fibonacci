@@ -9,6 +9,4 @@ function recursive(i) {
   return recursive(i - 1) + recursive(i - 2);
 }
 
-//console.log(recursive(Number(process.argv[2])));
-
 module.exports = recursive;

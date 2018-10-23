@@ -8,7 +8,7 @@
 // and so on
 // so slightly different input / outputs than suggested table
 
-var recursive = require('./recursive');
+const recursive = require('./recursive');
 
 test('recursive', () => {
   expect(recursive(0)).toBe(0);
